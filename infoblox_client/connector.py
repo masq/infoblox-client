@@ -26,15 +26,8 @@ try:
 except ImportError:
     import urllib.parse as urlparse
 
-try:
-    from oslo_log import log as logging
-except ImportError:  # pragma: no cover
-    import logging
-
-try:
-    from oslo_serialization import jsonutils
-except ImportError:  # pragma: no cover
-    import json as jsonutils
+import logging
+import json as jsonutils
 
 from infoblox_client import exceptions as ib_ex
 from infoblox_client import utils

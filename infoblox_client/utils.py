@@ -13,26 +13,18 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import netaddr
+import ipaddress 
 import six
-
-try:
-    from oslo_log import log as logging
-except ImportError:  # pragma: no cover
-    import logging
-
-try:
-    from oslo_serialization import jsonutils
-except ImportError:  # pragma: no cover
-    import json as jsonutils
+import logging
+import json as jsonutils
 
 LOG = logging.getLogger(__name__)
 
 
 def is_valid_ip(ip):
     try:
-        netaddr.IPAddress(ip)
-    except netaddr.core.AddrFormatError:
+        ipaddress.IPAddress(ip)
+    except ipaddress.core.AddrFormatError:
         return False
     return True
 
@@ -66,9 +58,9 @@ def determine_ip_version(ip_in):
             else:
                 addr = ip_in
             try:
-                ip = netaddr.IPAddress(addr)
+                ip = ipaddress.IPAddress(addr)
             except ValueError:
-                ip = netaddr.IPNetwork(addr)
+                ip = ipaddress.IPNetwork(addr)
 
             ip_ver = ip.version
     return ip_ver
