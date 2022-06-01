@@ -330,8 +330,6 @@ class Connector(object):
         while i<len(response):
             yield (response[i:i+max_results])
             i =i+max_results
-            if i!=0 and i<len(response):
-                yield (input("Press enter to read more..."))
 
     def _get_object(self, obj_type, url):
         opts = self._get_request_options()
